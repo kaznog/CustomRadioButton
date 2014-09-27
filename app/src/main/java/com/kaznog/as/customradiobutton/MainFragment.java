@@ -24,7 +24,7 @@ import android.widget.TextView;
  *
  */
 public class MainFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
-
+    private boolean visibleGroup2 = false;
     private RadioGroup radioGroup1;
     private RadioGroup radioGroup2;
     /**
@@ -50,13 +50,15 @@ public class MainFragment extends Fragment implements RadioGroup.OnCheckedChange
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        setRetainInstance(true);
         setHasOptionsMenu(true);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         radioGroup1 = (RadioGroup)rootView.findViewById(R.id.radio_group);
         radioGroup1.setOnCheckedChangeListener(this);
         radioGroup2 = (RadioGroup)rootView.findViewById(R.id.radio_group2);
         radioGroup2.setOnCheckedChangeListener(this);
+        radioGroup1.setVisibility(!visibleGroup2 ? View.VISIBLE : View.GONE);
+        radioGroup2.setVisibility(visibleGroup2 ? View.VISIBLE : View.GONE);
         return rootView;
     }
 
@@ -69,13 +71,9 @@ public class MainFragment extends Fragment implements RadioGroup.OnCheckedChange
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.action_switch) {
-            if (radioGroup1.getVisibility() == View.VISIBLE) {
-                radioGroup1.setVisibility(View.GONE);
-                radioGroup2.setVisibility(View.VISIBLE);
-            } else if (radioGroup2.getVisibility() == View.VISIBLE) {
-                radioGroup1.setVisibility(View.VISIBLE);
-                radioGroup2.setVisibility(View.GONE);
-            }
+            visibleGroup2 = !visibleGroup2;
+            radioGroup1.setVisibility(!visibleGroup2 ? View.VISIBLE : View.GONE);
+            radioGroup2.setVisibility(visibleGroup2 ? View.VISIBLE : View.GONE);
             return true;
         }
         return super.onOptionsItemSelected(menuItem);

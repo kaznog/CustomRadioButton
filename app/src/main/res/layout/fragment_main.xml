@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity$PlaceholderFragment">
 
     <RadioGroup
@@ -70,4 +71,74 @@
             />
         </RadioGroup>
 
-</RelativeLayout>
+    <RadioGroup
+        android:id="@+id/radio_group2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabstyle_radio_height"
+        android:layout_below="@id/radio_group"
+        android:orientation="horizontal"
+        android:background="@drawable/ab_stacked_solid_sample"
+        android:visibility="gone">
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/category_news2"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="ニュース"
+            android:checked="true"
+            android:background="@drawable/tabstyle_radio"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/darker_gray" />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/category_goods2"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="商品"
+            android:checked="false"
+            android:background="@drawable/tabstyle_radio"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/darker_gray" />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/category_hogehoge2"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="ほげほげ大百科"
+            android:checked="false"
+            android:background="@drawable/tabstyle_radio"
+            />
+    </RadioGroup>
+
+</LinearLayout>

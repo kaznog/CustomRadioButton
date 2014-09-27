@@ -2,11 +2,16 @@ package com.kaznog.as.customradiobutton;
 
 
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,6 +24,9 @@ import android.widget.TextView;
  *
  */
 public class MainFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
+
+    private RadioGroup radioGroup1;
+    private RadioGroup radioGroup2;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -43,22 +51,48 @@ public class MainFragment extends Fragment implements RadioGroup.OnCheckedChange
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        setHasOptionsMenu(true);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        RadioGroup radioGroup = (RadioGroup)rootView.findViewById(R.id.radio_group);
-        radioGroup.setOnCheckedChangeListener(this);
+        radioGroup1 = (RadioGroup)rootView.findViewById(R.id.radio_group);
+        radioGroup1.setOnCheckedChangeListener(this);
+        radioGroup2 = (RadioGroup)rootView.findViewById(R.id.radio_group2);
+        radioGroup2.setOnCheckedChangeListener(this);
         return rootView;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.action_switch) {
+            if (radioGroup1.getVisibility() == View.VISIBLE) {
+                radioGroup1.setVisibility(View.GONE);
+                radioGroup2.setVisibility(View.VISIBLE);
+            } else if (radioGroup2.getVisibility() == View.VISIBLE) {
+                radioGroup1.setVisibility(View.VISIBLE);
+                radioGroup2.setVisibility(View.GONE);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 //        RadioButton rdo = (RadioButton)radioGroup.findViewById(checkedId);
         switch (checkedId) {
             case R.id.category_news:
+            case R.id.category_news2:
                 break;
             case R.id.category_goods:
+            case R.id.category_goods2:
                 break;
             case R.id.category_hogehoge:
+            case R.id.category_hogehoge2:
                 break;
         }
     }
